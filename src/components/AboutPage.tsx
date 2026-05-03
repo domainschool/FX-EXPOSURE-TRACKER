@@ -48,7 +48,7 @@ export const AboutPage = ({ onBack }: { onBack: () => void }) => {
   const [showAfter, setShowAfter] = useState(false);
 
   return (
-    <div className="min-h-screen bg-[#0b0e14] text-slate-300 font-sans selection:bg-blue-500/30 selection:text-blue-200">
+    <div className="h-full overflow-y-auto bg-[#0b0e14] text-slate-300 font-sans selection:bg-blue-500/30 selection:text-blue-200">
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 h-16 border-b border-white/5 bg-[#0b0e14]/80 backdrop-blur-xl z-50 px-6 flex items-center justify-between">
         <div className="flex items-center gap-2">
