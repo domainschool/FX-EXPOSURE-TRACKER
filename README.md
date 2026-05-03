@@ -10,9 +10,10 @@
 
 ---
 
-## 📺 Dashboard Preview
-*(Replace with your Demo GIF or Screenshot)*
-> **[View Live Demo](http://localhost:5173)** *(Available when running locally)*
+## 📺 Product Preview
+<img width="1414" height="816" alt="image" src="https://github.com/user-attachments/assets/f6df387b-089d-4146-9b91-ec79fed831db" />
+
+> [View Live Demo] (https://domainschool.github.io/FX-EXPOSURE-TRACKER/
 
 ---
 
