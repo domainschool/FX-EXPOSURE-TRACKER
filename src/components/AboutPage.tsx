@@ -1,19 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, useScroll, AnimatePresence } from 'framer-motion';
 import { 
   Shield, 
   TrendingDown, 
   Zap, 
   Globe, 
-  BarChart3, 
   ChevronDown, 
   AlertCircle, 
-  CheckCircle2, 
   ArrowRight,
   Target,
   GraduationCap,
-  Sparkles,
-  Layers
+  Sparkles
 } from 'lucide-react';
 
 const ParticleField = () => {
@@ -46,7 +43,7 @@ const ParticleField = () => {
 };
 
 export const AboutPage = ({ onBack }: { onBack: () => void }) => {
-  const { scrollYProgress } = useScroll();
+  useScroll();
   const [activeTab, setActiveTab] = useState<'mvp' | 'enterprise'>('mvp');
   const [showAfter, setShowAfter] = useState(false);
 

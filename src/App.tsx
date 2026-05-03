@@ -14,7 +14,7 @@ import {
 import { useFXData } from './hooks/useFXData';
 import { AboutPage } from './components/AboutPage';
 
-const CustomTooltip = ({ active, payload, label }: TooltipProps<number, string>) => {
+const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
     const currentRate = payload[0].value as number;
     
@@ -79,10 +79,6 @@ function App() {
 
   const strategy = getStrategyAdvice(currentVolatility);
 
-  if (view === 'about') {
-    return <AboutPage onBack={() => setView('dashboard')} />;
-  }
-
   return (
     <div className="flex h-screen overflow-hidden bg-[#0b0e14] text-slate-300 font-sans">
       {/* Sidebar */}
@@ -111,27 +107,31 @@ function App() {
 
       {/* Main Content Container */}
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden relative">
-        {/* Top Navigation Bar */}
-        <header className="h-14 border-b border-slate-800 bg-[#0b0e14]/80 backdrop-blur-md flex items-center justify-between px-6 flex-shrink-0 z-10">
-          <div className="flex items-center space-x-4">
-            <h1 className="text-xl font-mono tracking-widest font-bold text-white">
-              FX EXPOSURE TRACKER
-            </h1>
-          </div>
-          
-          <div className="flex items-center space-x-3">
-            <div className="flex items-center space-x-2 bg-slate-800/50 rounded-full px-3 py-1 border border-slate-700/50">
-              <span className="relative flex h-2.5 w-2.5">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
-              </span>
-              <span className="text-xs uppercase tracking-wider font-semibold text-green-400">System Live</span>
-            </div>
-          </div>
-        </header>
+        {view === 'about' ? (
+          <AboutPage onBack={() => setView('dashboard')} />
+        ) : (
+          <>
+            {/* Top Navigation Bar */}
+            <header className="h-14 border-b border-slate-800 bg-[#0b0e14]/80 backdrop-blur-md flex items-center justify-between px-6 flex-shrink-0 z-10">
+              <div className="flex items-center space-x-4">
+                <h1 className="text-xl font-mono tracking-widest font-bold text-white">
+                  FX EXPOSURE TRACKER
+                </h1>
+              </div>
+              
+              <div className="flex items-center space-x-3">
+                <div className="flex items-center space-x-2 bg-slate-800/50 rounded-full px-3 py-1 border border-slate-700/50">
+                  <span className="relative flex h-2.5 w-2.5">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
+                  </span>
+                  <span className="text-xs uppercase tracking-wider font-semibold text-green-400">System Live</span>
+                </div>
+              </div>
+            </header>
 
-        {/* Main Workspace */}
-        <main className="flex-1 overflow-auto p-6 bg-gradient-to-br from-[#0b0e14] via-[#0f172a] to-[#0b0e14] pb-20">
+            {/* Main Workspace */}
+            <main className="flex-1 overflow-auto p-6 bg-gradient-to-br from-[#0b0e14] via-[#0f172a] to-[#0b0e14] pb-20">
           <div className="max-w-7xl mx-auto space-y-8">
             {/* Risk Banner */}
             <AnimatePresence>
@@ -402,30 +402,32 @@ function App() {
             </div>
           </div>
         </main>
-
-        {/* Global Market Ticker */}
-        <footer className="h-10 bg-slate-950 border-t border-slate-800 flex items-center overflow-hidden absolute bottom-0 w-full z-20">
-          <div className="flex-shrink-0 bg-blue-600 h-full px-4 flex items-center gap-2 text-[10px] font-black uppercase tracking-tighter text-white z-10">
-            <span className="animate-pulse">●</span> Global Markets
-          </div>
-          <div className="flex whitespace-nowrap animate-marquee py-1">
-            <TickerItem pair="GBP/USD" rate="1.2645" change="+0.12%" />
-            <TickerItem pair="USD/JPY" rate="151.42" change="-0.04%" />
-            <TickerItem pair="AUD/USD" rate="0.6512" change="+0.24%" />
-            <TickerItem pair="USD/CAD" rate="1.3567" change="-0.11%" />
-            <TickerItem pair="EUR/GBP" rate="0.8543" change="+0.05%" />
-            <TickerItem pair="NZD/USD" rate="0.5982" change="+0.18%" />
-            <TickerItem pair="USD/CHF" rate="0.9012" change="-0.08%" />
-            {/* Duplicated for seamless loop */}
-            <TickerItem pair="GBP/USD" rate="1.2645" change="+0.12%" />
-            <TickerItem pair="USD/JPY" rate="151.42" change="-0.04%" />
-            <TickerItem pair="AUD/USD" rate="0.6512" change="+0.24%" />
-            <TickerItem pair="USD/CAD" rate="1.3567" change="-0.11%" />
-            <TickerItem pair="EUR/GBP" rate="0.8543" change="+0.05%" />
-          </div>
-        </footer>
+      </>
+    )}
+    
+    {/* Global Market Ticker */}
+    <footer className="h-10 bg-slate-950 border-t border-slate-800 flex items-center overflow-hidden absolute bottom-0 w-full z-20">
+      <div className="flex-shrink-0 bg-blue-600 h-full px-4 flex items-center gap-2 text-[10px] font-black uppercase tracking-tighter text-white z-10">
+        <span className="animate-pulse">●</span> Global Markets
       </div>
-    </div>
+      <div className="flex whitespace-nowrap animate-marquee py-1">
+        <TickerItem pair="GBP/USD" rate="1.2645" change="+0.12%" />
+        <TickerItem pair="USD/JPY" rate="151.42" change="-0.04%" />
+        <TickerItem pair="AUD/USD" rate="0.6512" change="+0.24%" />
+        <TickerItem pair="USD/CAD" rate="1.3567" change="-0.11%" />
+        <TickerItem pair="EUR/GBP" rate="0.8543" change="+0.05%" />
+        <TickerItem pair="NZD/USD" rate="0.5982" change="+0.18%" />
+        <TickerItem pair="USD/CHF" rate="0.9012" change="-0.08%" />
+        {/* Duplicated for seamless loop */}
+        <TickerItem pair="GBP/USD" rate="1.2645" change="+0.12%" />
+        <TickerItem pair="USD/JPY" rate="151.42" change="-0.04%" />
+        <TickerItem pair="AUD/USD" rate="0.6512" change="+0.24%" />
+        <TickerItem pair="USD/CAD" rate="1.3567" change="-0.11%" />
+        <TickerItem pair="EUR/GBP" rate="0.8543" change="+0.05%" />
+      </div>
+    </footer>
+  </div>
+</div>
   );
 }
 
