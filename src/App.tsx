@@ -8,8 +8,7 @@ import {
   YAxis, 
   CartesianGrid, 
   Tooltip, 
-  ResponsiveContainer,
-  TooltipProps
+  ResponsiveContainer
 } from 'recharts';
 import { useFXData } from './hooks/useFXData';
 import { AboutPage } from './components/AboutPage';
